@@ -1,11 +1,5 @@
 # MCQ Ensemble Implementation Report
 
-> Source: extracted from the supplied DOCX. Personal, academic, account, and deployment identifiers were removed during extraction.
-
-MCQ Solver Project Report
-
-Implementation DocumentationMultiple-choice benchmark
-
 1. Abstract
 
 This project addresses the MCQ Solver Challenge on Kaggle, where the task is to rank the top 3 most likely correct options (A-E) for a given question prompt. The evaluation metric is mAP@3 (Mean Average Precision at 3). Three distinct models were developed and trained using 5-fold cross-validation: a fine-tuned DeBERTa-v3-large encoder, a lightweight Transformer built from scratch, and a Qwen3-4B decoder augmented with a Retrieval-Augmented Generation (RAG) pipeline and fine-tuned via LoRA. Predictions were combined using a custom confidence-gated ensembling strategy. The final ensemble achieved a public leaderboard mAP@3 score of 0.75768, outperforming any single model.
@@ -96,7 +90,7 @@ Reimers, N. & Gurevych, I. (2019). Sentence-BERT. Used via BAAI/bge-small-en-v1.
 
 Kaggle. MCQ Solver Challenge: [benchmark URL omitted] Deployment: The model ensemble is deployed on Hugging Face Spaces, allowing users to input questions and options to receive individual model probabilities and the final ensemble Map@3 prediction: [private deployment URL omitted]
 
-## Extracted Figures
+## Figures
 
 ![Extracted figure 1](docs/assets/image1.png)
 ![Extracted figure 2](docs/assets/image2.png)
@@ -108,13 +102,3 @@ Kaggle. MCQ Solver Challenge: [benchmark URL omitted] Deployment: The model ense
 ![Extracted figure 8](docs/assets/image8.png)
 ![Extracted figure 9](docs/assets/image9.png)
 ![Extracted figure 10](docs/assets/image10.png)
-
-## Extracted Table
-
-Aspect | DeBERTa-v3-large | Scratch Transformer | Qwen3-4B + RAG (LoRA)
-Base Weights | Pretrained (Fine-tuned) | Random (From Scratch) | Pretrained (LoRA)
-Trainable Size | Upper layers only | Full small model | LoRA adapters (~1% of 4B)
-Uses Retrieved Context | No | No | Yes
-Precision | fp32 train / fp16 infer | fp16 mixed | 4-bit base + LoRA
-Public LB mAP@3 | 0.75727 | 0.74771 | 0.74812
-Total Train Time | 13 hrs 5 mins | 1 hr 15 mins | 18 hrs 45 mins

@@ -42,7 +42,7 @@ target-version = "py311"
 src = ["src", "scripts"]
 
 [tool.ruff.lint]
-ignore = ["E501", "F401", "F841"]
+ignore = ["E501", "F401", "F841", "BLE001", "S110"]
 
 [tool.ty.environment]
 python-version = "3.11"
