@@ -1,0 +1,53 @@
+[project]
+name = "mcq-ensemble"
+version = "0.1.0"
+description = "A modular, confidence-aware ensemble for multiple-choice question ranking"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "datasets>=3.0",
+    "huggingface-hub>=0.27",
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "scikit-learn>=1.5",
+    "scipy>=1.14",
+    "sentence-transformers>=3.0",
+    "torch>=2.4",
+    "transformers>=4.45",
+]
+
+[project.scripts]
+mcq-ensemble = "mcq_ensemble:main"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9",
+    "ty>=0.0.1a20",
+]
+
+[project.optional-dependencies]
+gpu = [
+    "accelerate>=1.0",
+    "bitsandbytes>=0.45",
+    "peft>=0.14",
+    "protobuf>=5.0",
+    "sentencepiece>=0.2",
+    "unsloth>=2025.1",
+    "wandb>=0.19",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "scripts"]
+
+[tool.ruff.lint]
+ignore = ["E501", "F401", "F841"]
+
+[tool.ty.environment]
+python-version = "3.11"
+root = ["src"]
+
+[build-system]
+requires = ["uv_build>=0.12.19,<0.13.0"]
+build-backend = "uv_build"
